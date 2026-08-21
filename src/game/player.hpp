@@ -350,4 +350,56 @@ return rpm<matrix>(internal_camera + oxorany(0xF0));
 inline int platform(uint64_t p) noexcept {
 return property<int>(p, oxorany("pl"));
 }
+
+// Silent Aim helper functions
+inline int visibility_state(uint64_t p) noexcept {
+	if (!p) return 0;
+	uint64_t objectOccludee = rpm<uint64_t>(p + oxorany(0xB0));
+	if (objectOccludee > 0x1000 && objectOccludee < 0x7FFFFFFFFFFF) {
+		int visibilityState = rpm<int>(objectOccludee + oxorany(0x34));
+		int occlusionState = rpm<int>(objectOccludee + oxorany(0x38));
+		if (visibilityState == 2 && occlusionState != 1) return 2;
+		if (visibilityState == 1) return 1;
+	}
+	uint64_t view = rpm<uint64_t>(p + oxorany(0x48));
+	if (view > 0x1000 && view < 0x7FFFFFFFFFFF) {
+		return rpm<bool>(view + oxorany(0x30)) ? 2 : 0;
+	}
+	return 0;
+}
+
+inline bool bone_position(uint64_t p, int bone_idx, const Vector3& /*base*/, Vector3& out) noexcept {
+	if (!p) return false;
+	uint64_t charView = rpm<uint64_t>(p + oxorany(0x48));
+	if (!charView) return false;
+	uint64_t bipedMap = rpm<uint64_t>(charView + oxorany(0x48));
+	if (!bipedMap) return false;
+
+	static const uint64_t bone_offsets[] = {
+		0x20, // 0 = Head
+		0x28, // 1 = Neck
+		0x30, // 2 = Spine
+		0x88  // 3 = Pelvis
+	};
+
+	if (bone_idx < 0 || bone_idx > 3) bone_idx = 0;
+	uint64_t boneTransform = rpm<uint64_t>(bipedMap + bone_offsets[bone_idx]);
+	if (!boneTransform) return false;
+
+	out = get_transform_position(boneTransform);
+	return (out.x != 0.f || out.y != 0.f || out.z != 0.f);
+}
+
+inline bool transform_position(uint64_t transform, Vector3& out) noexcept {
+	if (!transform) return false;
+	uint64_t internal = rpm<uint64_t>(transform + oxorany(0x10));
+	if (!internal) return false;
+	out = get_transform_position(internal);
+	return true;
+}
+
+inline bool sane_world_pos(const Vector3& pos) noexcept {
+	return pos.x != 0.f || pos.y != 0.f || pos.z != 0.f;
+}
+
 }

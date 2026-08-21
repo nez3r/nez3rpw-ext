@@ -413,7 +413,7 @@ void custom_interface_t::render(void *_vars) {
 		PushFont(this->fonts.bold);
 		const char* logo_text = "nez3r.pw";
 		const ImVec2& logo_sz = CalcTextSize(logo_text);
-		const ImVec2& beta_sz = CalcTextSize("beta");
+		const ImVec2& beta_sz = CalcTextSize("[beta]");
 
 		// beta над логотипом, оба по центру колонки
 		const float beta_y = h_rect.Min.y + c_scale->get(3);

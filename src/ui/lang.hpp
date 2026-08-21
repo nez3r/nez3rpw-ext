@@ -195,7 +195,7 @@ inline const lang en = {
     "ammo", "fire interval",
     "set hp", "hp", "set kills", "kills", "set score", "score", "no recoil", "recoil",
     // Misc
-    "inf ammo", "ammo value", "rapid fire", "fire interval", "wallshot", "air strafe", "air strafe speed", "middle", "bottom",
+    "Infinity Ammo", "ammo value", "Fire Rate", "fire interval", "wallshot", "air strafe", "air strafe speed", "middle", "bottom",
     // AntiAim
     "antiaim", "pitch", "yaw", "jitter", "jitter speed", "range",
     "level", "up", "down", "forward", "back", "spin", "chaos",

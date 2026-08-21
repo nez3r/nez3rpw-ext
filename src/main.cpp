@@ -4,6 +4,7 @@
 #include "game/game.hpp"
 #include "func/visuals.hpp"
 #include "func/aim.hpp"
+#include "func/silent_aim.hpp"
 #include "func/infammo.hpp"
 #include "func/weapon_exploits.hpp"
 #include "func/airstrafe.hpp"
@@ -153,6 +154,8 @@ int main() {
                 visuals::draw();
                 aim::run();
                 aim::draw_fov(ImGui::GetBackgroundDrawList(), g_sw, g_sh);
+                silent_aim::run();
+                silent_aim::draw_fov(ImGui::GetBackgroundDrawList(), g_sw, g_sh);
 
                 // Локальный игрок для фич Misc (infammo / rapid_fire / wallshot / airstrafe)
                 uint64_t local_player = rpm<uint64_t>(local_player_manager + 0x70);

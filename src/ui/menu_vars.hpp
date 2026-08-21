@@ -98,6 +98,15 @@ inline bool opt_aim_360 = false;
 inline bool opt_aim_fov_draw = false;
 inline bool opt_aim_info = false;
 
+// ─── Silent Aim ───
+inline bool opt_silent_aim = false;
+inline float s_silent_fov = 30.f;
+inline bool opt_silent_visible = false;
+inline bool opt_silent_smoke_check = false;
+inline int s_silent_target_bone = 0;    // 0 = head, 1 = neck, 2 = chest, 3 = hips
+inline float s_silent_recoil_mult = 1.f;
+inline bool opt_silent_fov_draw = false;
+
 inline bool opt_trigger = false;
 inline int s_trigger_bone = 0;        // 0 = head, 1 = neck
 inline float s_trigger_dist = 100.f;
@@ -165,7 +174,7 @@ namespace cfg {
         inline bool& health = ::opt_health;
         inline bool& distance = ::opt_dist;
         inline int& box_type = ::s_box_shape;
-        inline float& box_rounding = ::s_box_thick;  // reusing thickness as rounding
+        inline float& box_rounding = ::s_box_thick;
         inline ImVec4& box_col = ::s_box_col;
         inline ImVec4& name_col = ::s_name_col;
         inline ImVec4& health_col = ::s_health_col1;
@@ -175,16 +184,25 @@ namespace cfg {
         inline bool& enabled = ::opt_aim;
         inline float& fov = ::s_aim_fov;
         inline float& smooth = ::s_aim_smooth;
-        inline float& max_distance = ::s_esp_dist;  // reuse esp dist
+        inline float& max_distance = ::s_esp_dist;
         inline int& target = ::s_aim_bone;
         inline bool& visible_check = ::opt_aim_visible;
         inline bool& lock_line = ::opt_aim_fov_draw;
         inline bool& lock_dot = ::opt_aim_info;
     }
+    namespace silent {
+        inline bool& enabled = ::opt_silent_aim;
+        inline float& fov = ::s_silent_fov;
+        inline bool& visible_check = ::opt_silent_visible;
+        inline bool& smoke_check = ::opt_silent_smoke_check;
+        inline int& target_bone = ::s_silent_target_bone;
+        inline float& recoil_mult = ::s_silent_recoil_mult;
+        inline bool& fov_display = ::opt_silent_fov_draw;
+    }
     namespace other {
-        inline bool& crosshair = ::opt_line;  // reuse line as crosshair toggle
+        inline bool& crosshair = ::opt_line;
         inline float& crosshair_size = ::s_line_thick;
         inline ImVec4& crosshair_col = ::s_line_col;
-        inline float& gui_scale = ::s_wm_scale;  // reuse
+        inline float& gui_scale = ::s_wm_scale;
     }
 }

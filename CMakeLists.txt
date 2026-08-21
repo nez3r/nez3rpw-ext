@@ -54,6 +54,7 @@ add_executable(nez3r
     src/ui/util.cpp
     src/func/visuals.cpp
     src/func/aim.cpp
+    src/func/silent_aim.cpp
     src/func/infammo.cpp
     src/func/weapon_exploits.cpp
     src/func/airstrafe.cpp

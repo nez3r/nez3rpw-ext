@@ -44,8 +44,10 @@ void tick(uint64_t p) {
         active = true;
     }
 
-    if (readable(data + ASTR_TD_MOVE_VECTOR, sizeof(Vector3)))
-        *(Vector3*)(data + ASTR_TD_MOVE_VECTOR) = Vector3(0.f, 0.f, 0.f);
+    if (readable(data + ASTR_TD_MOVE_VECTOR, sizeof(Vector3))) {
+        Vector3 zero_vec = Vector3(0.f, 0.f, 0.f);
+        mem_write(data + ASTR_TD_MOVE_VECTOR, &zero_vec, sizeof(Vector3));
+    }
 
     wrf(jp + ASTR_JP_JUMP_MOVE_SPEED, s_air_strafe_speed);
 }

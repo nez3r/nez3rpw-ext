@@ -17,34 +17,30 @@ namespace visuals {
         return p > 0x10000ull && p < 0x0000FFFFFFFFFFFFull;
     }
 
-    // Полный набор оффсетов костей для Standoff 2 (как в privet)
+    // Полный набор оффсетов костей для Standoff 2 (из дампа BipedMap)
     enum BoneId {
         BONE_HEAD         = 0x20,
         BONE_NECK         = 0x28,
         BONE_SPINE        = 0x30,
-        BONE_PELVIS       = 0x88, // HIP
-        BONE_L_SHOULDER   = 0x38,
-        BONE_L_ELBOW      = 0x40,
-        BONE_L_HAND       = 0x48,
-        BONE_R_SHOULDER   = 0x60,
-        BONE_R_ELBOW      = 0x68,
-        BONE_R_HAND       = 0x70,
-        BONE_L_THIGH      = 0x90,
-        BONE_L_KNEE       = 0x98,
+        BONE_SPINE1       = 0x38,
+        BONE_SPINE2       = 0x40,
+        BONE_L_SHOULDER   = 0x48,
+        BONE_L_UPPERARM   = 0x50,
+        BONE_L_FOREARM    = 0x58,
+        BONE_L_HAND       = 0x60,
+        BONE_R_SHOULDER   = 0x68,
+        BONE_R_UPPERARM   = 0x70,
+        BONE_R_FOREARM    = 0x78,
+        BONE_R_HAND       = 0x80,
+        BONE_PELVIS       = 0x88, // Hip
+        BONE_L_UPLEG      = 0x90,
+        BONE_L_LEG        = 0x98,
         BONE_L_FOOT       = 0xA0,
-        BONE_R_THIGH      = 0xB8,
-        BONE_R_KNEE       = 0xC0,
-        BONE_R_FOOT       = 0xC8,
-        BONE_LEFT_UPPERARM = 0x38,
-        BONE_LEFT_FOREARM  = 0x40,
-        BONE_LEFT_HAND     = 0x48,
-        BONE_RIGHT_UPPERARM = 0x60,
-        BONE_RIGHT_FOREARM  = 0x68,
-        BONE_RIGHT_HAND     = 0x70,
-        BONE_LEFT_LEG       = 0x90,
-        BONE_LEFT_FOOT      = 0xA0,
-        BONE_RIGHT_LEG      = 0xB8,
-        BONE_RIGHT_FOOT     = 0xC8
+        BONE_L_TOE        = 0xA8,
+        BONE_R_UPLEG      = 0xB0,
+        BONE_R_LEG        = 0xB8,
+        BONE_R_FOOT       = 0xC0,
+        BONE_R_TOE        = 0xC8
     };
 
     // Чтение 3D позиции конкретной кости из памяти
@@ -78,24 +74,29 @@ namespace visuals {
 
     static const BoneSegment skeleton_bones[] = {
         // Spine
+        { BONE_HEAD, BONE_NECK },
         { BONE_NECK, BONE_SPINE },
-        { BONE_SPINE, BONE_PELVIS },
+        { BONE_SPINE, BONE_SPINE1 },
+        { BONE_SPINE1, BONE_SPINE2 },
+        { BONE_SPINE2, BONE_PELVIS },
         // Left arm
         { BONE_NECK, BONE_L_SHOULDER },
-        { BONE_L_SHOULDER, BONE_L_ELBOW },
-        { BONE_L_ELBOW, BONE_L_HAND },
+        { BONE_L_SHOULDER, BONE_L_UPPERARM },
+        { BONE_L_UPPERARM, BONE_L_FOREARM },
+        { BONE_L_FOREARM, BONE_L_HAND },
         // Right arm
         { BONE_NECK, BONE_R_SHOULDER },
-        { BONE_R_SHOULDER, BONE_R_ELBOW },
-        { BONE_R_ELBOW, BONE_R_HAND },
+        { BONE_R_SHOULDER, BONE_R_UPPERARM },
+        { BONE_R_UPPERARM, BONE_R_FOREARM },
+        { BONE_R_FOREARM, BONE_R_HAND },
         // Left leg
-        { BONE_PELVIS, BONE_L_THIGH },
-        { BONE_L_THIGH, BONE_L_KNEE },
-        { BONE_L_KNEE, BONE_L_FOOT },
+        { BONE_PELVIS, BONE_L_UPLEG },
+        { BONE_L_UPLEG, BONE_L_LEG },
+        { BONE_L_LEG, BONE_L_FOOT },
         // Right leg
-        { BONE_PELVIS, BONE_R_THIGH },
-        { BONE_R_THIGH, BONE_R_KNEE },
-        { BONE_R_KNEE, BONE_R_FOOT }
+        { BONE_PELVIS, BONE_R_UPLEG },
+        { BONE_R_UPLEG, BONE_R_LEG },
+        { BONE_R_LEG, BONE_R_FOOT }
     };
 
     static void draw_bone_line_safe(ImDrawList* dl, uint64_t player, uint32_t bone_a, uint32_t bone_b, matrix& vm, ImU32 color) {
