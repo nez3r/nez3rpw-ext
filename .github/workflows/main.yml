@@ -18,6 +18,8 @@ jobs:
         with:
           ndk-version: r27d
         id: setup-ndk
+      - name: Clean build directory
+        run: rm -rf build-cmake-arm64
       - name: Configure CMake (arm64-v8a)
         run: |
           cmake -S . -B build-cmake-arm64 -G Ninja \
@@ -32,7 +34,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         with:
           name: cmake-arm64-v8a
-          path: build-cmake-arm64/libnez3r.so
+          path: build-cmake-arm64/nez3r
 
   cmake-build-x86_64:
     name: CMake build (x86_64)
@@ -44,6 +46,8 @@ jobs:
         with:
           ndk-version: r27d
         id: setup-ndk
+      - name: Clean build directory
+        run: rm -rf build-cmake-x86_64
       - name: Configure CMake (x86_64)
         run: |
           cmake -S . -B build-cmake-x86_64 -G Ninja \
@@ -58,49 +62,4 @@ jobs:
       - uses: actions/upload-artifact@v7
         with:
           name: cmake-x86_64
-          path: build-cmake-x86_64/libnez3r.so
-
-  # ndk-build for both architectures
-  ndk-build-arm64:
-    name: ndk-build (arm64-v8a)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - name: Setup Android NDK
-        uses: nttld/setup-ndk@v1.6.0
-        with:
-          ndk-version: r27d
-        id: setup-ndk
-      - name: Run ndk-build (arm64-v8a)
-        run: |
-          ndk-build \
-            NDK_PROJECT_PATH=. \
-            APP_BUILD_SCRIPT=./jni/Android.mk \
-            APP_ABI=arm64-v8a \
-            -j$(nproc)
-      - uses: actions/upload-artifact@v7
-        with:
-          name: ndk-arm64-v8a
-          path: libs/arm64-v8a/nez3r.sh
-
-  ndk-build-x86_64:
-    name: ndk-build (x86_64)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - name: Setup Android NDK
-        uses: nttld/setup-ndk@v1.6.0
-        with:
-          ndk-version: r27d
-        id: setup-ndk
-      - name: Run ndk-build (x86_64)
-        run: |
-          ndk-build \
-            NDK_PROJECT_PATH=. \
-            APP_BUILD_SCRIPT=./jni/Android.mk \
-            APP_ABI=x86_64 \
-            -j$(nproc)
-      - uses: actions/upload-artifact@v7
-        with:
-          name: ndk-x86_64
-          path: libs/x86_64/nez3r.sh
+          path: build-cmake-x86_64/nez3r
