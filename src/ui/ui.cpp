@@ -152,7 +152,7 @@ static void visuals_esp() {
     if (opt_health) { ImGui::PushID("hpcol"); color4(g_lang->color, &s_health_col1); ImGui::PopID(); }
     toggle(g_lang->distance, &opt_dist);
     if (opt_dist) { ImGui::PushID("distcol"); color4(g_lang->color, &s_dist_col); ImGui::PopID(); }
-    toggle(g_lang->skeleton, &opt_skeleton);
+    // toggle(g_lang->skeleton, &opt_skeleton);
     if (opt_skeleton) {
         ImGui::PushID("skelthick"); slider_f(g_lang->thickness, &s_skel_thick, 1, 5); ImGui::PopID();
         ImGui::PushID("skelcol"); color4(g_lang->color, &s_skel_color); ImGui::PopID();
@@ -174,7 +174,7 @@ static void aim_tab() {
         ImGui::PushID("aimbone"); c_widgets->combo(g_lang->bone, &s_aim_bone, bones, IM_ARRAYSIZE(bones)); ImGui::PopID();
         slider_f(g_lang->aim_smooth, &s_aim_smooth, 0, 1, "%.2f");
         toggle(g_lang->aim_visible, &opt_aim_visible);
-        toggle(g_lang->aim_fov_draw, &opt_aim_fov_draw);
+        // toggle(g_lang->aim_fov_draw, &opt_aim_fov_draw);
         toggle(g_lang->aim_info, &opt_aim_info);
     }
 
@@ -244,22 +244,23 @@ static void settings_tab() {
 
 // Configs tab
 static void configs_tab() {
-    static char new_name[64] = "";
-    static int selected_idx = -1;
+    static int selected_slot = -1;
 
-    auto files = config::get_config_files();
+    auto slots = config::list_slots();
 
     ImGui::Text("%s", g_lang->cfg_list);
     ImGui::Separator();
 
-    if (files.empty()) {
+    if (slots.empty()) {
         ImGui::TextColored(ImVec4(0.5f, 0.5f, 0.5f, 1.f), "%s", g_lang->cfg_empty);
     } else {
         ImGui::BeginChild("##config_list", ImVec2(0, 200), true);
-        for (int i = 0; i < (int)files.size(); i++) {
-            bool is_selected = (selected_idx == i);
-            if (ImGui::Selectable(files[i].c_str(), is_selected)) {
-                selected_idx = i;
+        for (int i = 0; i < (int)slots.size(); i++) {
+            char label[32];
+            snprintf(label, sizeof(label), "nez3rpw_%d.json", slots[i]);
+            bool is_selected = (selected_slot == slots[i]);
+            if (ImGui::Selectable(label, is_selected)) {
+                selected_slot = slots[i];
             }
         }
         ImGui::EndChild();
@@ -276,8 +277,8 @@ static void configs_tab() {
     };
 
     if (c_widgets->button(g_lang->cfg_load)) {
-        if (selected_idx >= 0 && selected_idx < (int)files.size()) {
-            if (config::load(files[selected_idx])) {
+        if (selected_slot != -1) {
+            if (config::load_slot(selected_slot)) {
                 notify(ImGuiToastType_Success, "Config loaded");
             } else {
                 notify(ImGuiToastType_Error, "Failed to load config");
@@ -290,21 +291,35 @@ static void configs_tab() {
     ImGui::SameLine();
 
     if (c_widgets->button(g_lang->cfg_save)) {
-        int next_num = config::get_next_config_number();
-        if (config::save(next_num)) {
-            notify(ImGuiToastType_Success, "Config saved");
+        if (selected_slot != -1) {
+            if (config::save_slot(selected_slot)) {
+                notify(ImGuiToastType_Success, "Config saved");
+            } else {
+                notify(ImGuiToastType_Error, "Failed to save config");
+            }
         } else {
-            notify(ImGuiToastType_Error, "Failed to save config");
+            notify(ImGuiToastType_Warning, "Select a config first");
+        }
+    }
+
+    ImGui::SameLine();
+
+    if (c_widgets->button(g_lang->cfg_new)) {
+        int next_num = config::next_free_slot();
+        if (config::save_slot(next_num)) {
+            notify(ImGuiToastType_Success, "New config created");
+        } else {
+            notify(ImGuiToastType_Error, "Failed to create config");
         }
     }
 
     ImGui::SameLine();
 
     if (c_widgets->button(g_lang->cfg_delete)) {
-        if (selected_idx >= 0 && selected_idx < (int)files.size()) {
-            if (config::delete_config(files[selected_idx])) {
+        if (selected_slot != -1) {
+            if (config::delete_slot(selected_slot)) {
                 notify(ImGuiToastType_Success, "Config deleted");
-                selected_idx = -1;
+                selected_slot = -1;
             } else {
                 notify(ImGuiToastType_Error, "Failed to delete config");
             }
@@ -314,31 +329,6 @@ static void configs_tab() {
     }
 
     ImGui::EndGroup();
-
-    ImGui::Spacing();
-    ImGui::Separator();
-    ImGui::Spacing();
-
-    ImGui::Text("%s", g_lang->cfg_new_name);
-    ImGui::PushItemWidth(-1);
-    if (ImGui::InputText("##new_cfg_name", new_name, sizeof(new_name))) {
-        // Input changed
-    }
-    ImGui::PopItemWidth();
-
-    if (c_widgets->button(g_lang->cfg_save_as)) {
-        if (strlen(new_name) > 0) {
-            std::string fname = std::string(config::CONFIG_PREFIX) + new_name + config::CONFIG_EXT;
-            if (config::save(fname)) {
-                notify(ImGuiToastType_Success, "Config saved as custom name");
-                new_name[0] = '\0';
-            } else {
-                notify(ImGuiToastType_Error, "Failed to save config");
-            }
-        } else {
-            notify(ImGuiToastType_Warning, "Enter config name");
-        }
-    }
 }
 
 static void credits_tab() {

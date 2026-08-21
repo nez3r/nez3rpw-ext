@@ -60,9 +60,8 @@ struct lang {
     const char* cfg_empty;
     const char* cfg_load;
     const char* cfg_save;
+    const char* cfg_new;
     const char* cfg_delete;
-    const char* cfg_new_name;
-    const char* cfg_save_as;
     // Settings
     const char* accent;
     const char* language;
@@ -95,7 +94,7 @@ inline const lang ru = {
     // Misc
     "эйр стрейф", "скорость эйр стрейфа",
     // Configs
-    "конфиги", "пусто", "загрузить", "сохранить", "удалить", "имя конфига", "сохранить как",
+    "конфиги", "пусто", "загрузить", "сохранить", "новый", "удалить",
     // Settings
     "акцент", "язык", "водяной знак", "иконки", "сайт", "тип", "фпс", "время",
     "версия", "цвет", "масштаб", "полоса прокрутки", "выход из чита",
@@ -117,7 +116,7 @@ inline const lang en = {
     // Misc
     "air strafe", "air strafe speed",
     // Configs
-    "configs", "empty", "load", "save", "delete", "config name", "save as",
+    "configs", "empty", "load", "save", "new", "delete",
     // Settings
     "accent", "language", "watermark", "icons", "site", "type", "fps", "time",
     "version", "color", "scale", "scrollbar size", "exit cheat",
