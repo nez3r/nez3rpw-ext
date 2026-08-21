@@ -270,15 +270,20 @@ static void configs_tab() {
     // Buttons
     ImGui::BeginGroup();
 
+    auto notify = [](ImGuiToastType type, const char* msg) {
+        ImGuiToast toast(type, 3000, "%s", msg);
+        ImGui::Notification(toast);
+    };
+
     if (c_widgets->button(g_lang->cfg_load)) {
         if (selected_idx >= 0 && selected_idx < (int)files.size()) {
             if (config::load(files[selected_idx])) {
-                ImGui::Notification({ImGuiToastType_Success, 3000, "Config loaded"});
+                notify(ImGuiToastType_Success, "Config loaded");
             } else {
-                ImGui::Notification({ImGuiToastType_Error, 3000, "Failed to load config"});
+                notify(ImGuiToastType_Error, "Failed to load config");
             }
         } else {
-            ImGui::Notification({ImGuiToastType_Warning, 3000, "Select a config first"});
+            notify(ImGuiToastType_Warning, "Select a config first");
         }
     }
 
@@ -287,9 +292,9 @@ static void configs_tab() {
     if (c_widgets->button(g_lang->cfg_save)) {
         int next_num = config::get_next_config_number();
         if (config::save(next_num)) {
-            ImGui::Notification({ImGuiToastType_Success, 3000, "Config saved"});
+            notify(ImGuiToastType_Success, "Config saved");
         } else {
-            ImGui::Notification({ImGuiToastType_Error, 3000, "Failed to save config"});
+            notify(ImGuiToastType_Error, "Failed to save config");
         }
     }
 
@@ -298,13 +303,13 @@ static void configs_tab() {
     if (c_widgets->button(g_lang->cfg_delete)) {
         if (selected_idx >= 0 && selected_idx < (int)files.size()) {
             if (config::delete_config(files[selected_idx])) {
-                ImGui::Notification({ImGuiToastType_Success, 3000, "Config deleted"});
+                notify(ImGuiToastType_Success, "Config deleted");
                 selected_idx = -1;
             } else {
-                ImGui::Notification({ImGuiToastType_Error, 3000, "Failed to delete config"});
+                notify(ImGuiToastType_Error, "Failed to delete config");
             }
         } else {
-            ImGui::Notification({ImGuiToastType_Warning, 3000, "Select a config first"});
+            notify(ImGuiToastType_Warning, "Select a config first");
         }
     }
 
@@ -325,13 +330,13 @@ static void configs_tab() {
         if (strlen(new_name) > 0) {
             std::string fname = std::string(config::CONFIG_PREFIX) + new_name + config::CONFIG_EXT;
             if (config::save(fname)) {
-                ImGui::Notification({ImGuiToastType_Success, 3000, "Config saved as custom name"});
+                notify(ImGuiToastType_Success, "Config saved as custom name");
                 new_name[0] = '\0';
             } else {
-                ImGui::Notification({ImGuiToastType_Error, 3000, "Failed to save config"});
+                notify(ImGuiToastType_Error, "Failed to save config");
             }
         } else {
-            ImGui::Notification({ImGuiToastType_Warning, 3000, "Enter config name"});
+            notify(ImGuiToastType_Warning, "Enter config name");
         }
     }
 }

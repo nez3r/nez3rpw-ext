@@ -50,11 +50,10 @@ namespace config {
                 size_t start = strlen(CONFIG_PREFIX);
                 size_t end = s.size() - strlen(CONFIG_EXT);
                 if (start >= end) return 0;
-                try {
-                    return std::stoi(s.substr(start, end - start));
-                } catch (...) {
-                    return 0;
-                }
+                const char* str = s.c_str() + start;
+                char* endptr = nullptr;
+                long val = std::strtol(str, &endptr, 10);
+                return (endptr != str) ? static_cast<int>(val) : 0;
             };
             return extract_num(a) < extract_num(b);
         });
@@ -70,11 +69,10 @@ namespace config {
         std::string last = files.back();
         size_t start = strlen(CONFIG_PREFIX);
         size_t end = last.size() - strlen(CONFIG_EXT);
-        try {
-            return std::stoi(last.substr(start, end - start)) + 1;
-        } catch (...) {
-            return 1;
-        }
+        const char* str = last.c_str() + start;
+        char* endptr = nullptr;
+        long val = std::strtol(str, &endptr, 10);
+        return (endptr != str) ? static_cast<int>(val) + 1 : 1;
     }
 
     // Build full path for config file
@@ -299,15 +297,14 @@ namespace config {
         std::ifstream f(path);
         if (!f.is_open()) return false;
         nlohmann::json j;
-        try {
-            f >> j;
-            deserialize(j);
-            f.close();
-            return true;
-        } catch (...) {
+        f >> j;
+        if (f.fail()) {
             f.close();
             return false;
         }
+        deserialize(j);
+        f.close();
+        return true;
     }
 
     // Load config from file (by name)
@@ -316,15 +313,14 @@ namespace config {
         std::ifstream f(path);
         if (!f.is_open()) return false;
         nlohmann::json j;
-        try {
-            f >> j;
-            deserialize(j);
-            f.close();
-            return true;
-        } catch (...) {
+        f >> j;
+        if (f.fail()) {
             f.close();
             return false;
         }
+        deserialize(j);
+        f.close();
+        return true;
     }
 
     // Delete config file

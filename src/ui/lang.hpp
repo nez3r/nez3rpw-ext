@@ -24,6 +24,13 @@ struct lang {
     const char* top;
     const char* left;
     const char* right;
+    const char* position;
+    const char* head;
+    const char* neck;
+    const char* chest;
+    const char* hips;
+    const char* middle;
+    const char* bottom;
     // Aim
     const char* aimbot;
     const char* aim_fov;
@@ -78,7 +85,7 @@ inline const lang ru = {
     // ESP
     "включить esp", "радуга", "бокс", "толщина", "форма", "квадрат", "углы", "цвет",
     "ник", "здоровье", "дистанция", "скелет", "линия", "позиция линии", "жирность",
-    "сверху", "слева", "справа",
+    "сверху", "слева", "справа", "позиция", "голова", "шея", "грудь", "таз", "середина", "низ",
     // Aim
     "аимбот", "фов", "кость", "плавность", "чек видимости", "круг фова", "точка у кости",
     // Silent Aim
@@ -100,7 +107,7 @@ inline const lang en = {
     // ESP
     "enable esp", "rainbow", "box", "thickness", "shape", "square", "corners", "color",
     "nickname", "health", "distance", "skeleton", "line", "line pos", "thickness",
-    "top", "left", "right",
+    "top", "left", "right", "position", "head", "neck", "chest", "hips", "middle", "bottom",
     // Aim
     "aimbot", "aim fov", "bone", "smooth", "visible check", "fov circle", "dot in bone",
     // Silent Aim

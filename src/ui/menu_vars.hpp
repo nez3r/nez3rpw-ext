@@ -120,7 +120,4 @@ namespace cfg {
         inline ImVec4& crosshair_col = ::s_line_col;
         inline float& gui_scale = ::s_wm_scale;
     }
-    namespace style {
-        inline ImVec4& accent = ::cfg_style_accent;
     }
-}
