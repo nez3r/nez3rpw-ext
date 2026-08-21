@@ -1,10 +1,10 @@
 # ninja log v7
 27	7431	8090074304947250	CMakeFiles/nez3r.dir/src/ui/util.cpp.o	4c2df29f278b0a80
 24	7951	8090074304917280	CMakeFiles/nez3r.dir/src/ui/widgets.cpp.o	65e00b55fa7b5e07
-19	14228	8090077464544427	CMakeFiles/nez3r.dir/src/main.cpp.o	94c646159e91e06e
+34	10325	8090109324880776	CMakeFiles/nez3r.dir/src/main.cpp.o	94c646159e91e06e
 7951	40797	8090074384189240	CMakeFiles/nez3r.dir/src/func/aim.cpp.o	e3560d6d8c470668
-7	159	8090109323815624	build.ninja	445347ec53cb8c0d
-7	159	8090109323705715	C:/Users/nez3r/Desktop/0.39.2 bycmd/build-cmake-arm64/cmake_install.cmake	445347ec53cb8c0d
+7	159	8090111635929665	build.ninja	445347ec53cb8c0d
+7	159	8090111635859705	C:/Users/nez3r/Desktop/0.39.2 bycmd/build-cmake-arm64/cmake_install.cmake	445347ec53cb8c0d
 7433	36940	8090074379000023	CMakeFiles/nez3r.dir/src/func/visuals.cpp.o	9fd68c5e2fbbb794
 22	28313	8090074304897280	CMakeFiles/nez3r.dir/src/ui/ui.cpp.o	756a0b4979611cdc
 23	12801	8090079197967510	CMakeFiles/nez3r.dir/src/func/weapon_exploits.cpp.o	4c1158512ad76656
@@ -19,6 +19,4 @@
 51583	58840	8090074820502347	CMakeFiles/nez3r.dir/includes/draw/Android_touch/Touch.cpp.o	c6bf2f723f49ef93
 49399	60824	8090074798662469	CMakeFiles/nez3r.dir/includes/draw/ImGui/imgui_widgets.cpp.o	34873583ffccf0d3
 51373	61855	8090074818403641	CMakeFiles/nez3r.dir/includes/draw/Android_draw/draw.cpp.o	969853fa7cb212ad
-12955	13136	8090079327290016	nez3r	a76938ddaf217026
-34	10325	8090109324880776	CMakeFiles/nez3r.dir/src/main.cpp.o	94c646159e91e06e
 10329	10843	8090109427834172	nez3r	a76938ddaf217026

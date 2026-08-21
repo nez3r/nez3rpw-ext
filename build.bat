@@ -14,4 +14,4 @@ cmake -S . -B build-cmake-arm64 -G Ninja ^
 cmake --build build-cmake-arm64 -j%NUMBER_OF_PROCESSORS%
 popd
 
-echo ndk exit with code %errorlevel%
+echo cmake exit with code %errorlevel%

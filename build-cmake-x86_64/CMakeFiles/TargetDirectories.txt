@@ -1,0 +1,3 @@
+C:/Users/nez3r/Desktop/0.39.2 bycmd/build-cmake-x86_64/CMakeFiles/nez3r.dir
+C:/Users/nez3r/Desktop/0.39.2 bycmd/build-cmake-x86_64/CMakeFiles/edit_cache.dir
+C:/Users/nez3r/Desktop/0.39.2 bycmd/build-cmake-x86_64/CMakeFiles/rebuild_cache.dir

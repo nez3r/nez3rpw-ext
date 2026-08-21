@@ -1,0 +1,20 @@
+# ninja log v7
+23	8338	8090110800143756	CMakeFiles/nez3r.dir/src/ui/util.cpp.o	4c2df29f278b0a80
+18	8921	8090110800043830	CMakeFiles/nez3r.dir/src/ui/widgets.cpp.o	65e00b55fa7b5e07
+11	19085	8090110799963878	CMakeFiles/nez3r.dir/src/main.cpp.o	94c646159e91e06e
+15	28107	8090110800003851	CMakeFiles/nez3r.dir/src/ui/ui.cpp.o	756a0b4979611cdc
+8362	33967	8090110883487334	CMakeFiles/nez3r.dir/src/func/visuals.cpp.o	9fd68c5e2fbbb794
+19091	34865	8090110990772680	CMakeFiles/nez3r.dir/src/func/infammo.cpp.o	cbfa43541101ea
+34866	35062	8090111148527085	CMakeFiles/nez3r.dir/src/protect/oxorany.cpp.o	a864f5edcc2ede5f
+8959	38937	8090110889517225	CMakeFiles/nez3r.dir/src/func/aim.cpp.o	e3560d6d8c470668
+28109	44542	8090111080948592	CMakeFiles/nez3r.dir/src/func/weapon_exploits.cpp.o	4c1158512ad76656
+38945	47061	8090111189306251	CMakeFiles/nez3r.dir/includes/draw/ImGui/imgui_draw.cpp.o	53c1a9f899b168be
+33969	47492	8090111139554733	CMakeFiles/nez3r.dir/src/func/airstrafe.cpp.o	b7e1a93784a28060
+47494	48118	8090111274803588	CMakeFiles/nez3r.dir/includes/draw/ImGui/backends/imgui_impl_android.cpp.o	a7bdcb8317839899
+48133	49009	8090111281189652	CMakeFiles/nez3r.dir/includes/draw/ImGui/backends/imgui_impl_opengl3.cpp.o	dd18b276f7c0668b
+44543	49750	8090111245291574	CMakeFiles/nez3r.dir/includes/draw/ImGui/imgui_tables.cpp.o	fa91534a34ce8a9c
+35067	50772	8090111150687309	CMakeFiles/nez3r.dir/includes/draw/ImGui/imgui.cpp.o	ef0b7c92c9e749a3
+49751	55943	8090111297366836	CMakeFiles/nez3r.dir/includes/draw/Android_touch/Touch.cpp.o	c6bf2f723f49ef93
+47064	57251	8090111270496246	CMakeFiles/nez3r.dir/includes/draw/ImGui/imgui_widgets.cpp.o	34873583ffccf0d3
+49010	58266	8090111289960791	CMakeFiles/nez3r.dir/includes/draw/Android_draw/draw.cpp.o	969853fa7cb212ad
+58267	58456	8090111382527573	nez3r	a76938ddaf217026
