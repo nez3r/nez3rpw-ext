@@ -17,7 +17,5 @@
 66359	102904	8090221403801246	CMakeFiles/nez3r.dir/includes/draw/ImGui/imgui_widgets.cpp.o	34873583ffccf0d3
 93792	110643	8090221678122386	CMakeFiles/nez3r.dir/includes/draw/Android_touch/Touch.cpp.o	c6bf2f723f49ef93
 82491	112747	8090221565109205	CMakeFiles/nez3r.dir/includes/draw/Android_draw/draw.cpp.o	969853fa7cb212ad
-38	38562	8090238196620467	CMakeFiles/nez3r.dir/src/ui/ui.cpp.o	756a0b4979611cdc
-38568	38890	8090238581884481	nez3r	6c44a87ea85ae345
-28	49510	8090239865098595	CMakeFiles/nez3r.dir/src/ui/ui.cpp.o	756a0b4979611cdc
-49512	49856	8090240359944588	nez3r	6c44a87ea85ae345
+47	60128	8090246326920792	CMakeFiles/nez3r.dir/src/ui/ui.cpp.o	756a0b4979611cdc
+60129	60709	8090246927738083	nez3r	6c44a87ea85ae345

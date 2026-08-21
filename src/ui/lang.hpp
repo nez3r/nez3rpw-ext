@@ -81,47 +81,47 @@ struct lang {
 };
 
 inline const lang ru = {
-    // ESP
+    // ESP (25)
     "включить esp", "радуга", "бокс", "толщина", "форма", "квадрат", "углы", "цвет",
     "ник", "здоровье", "дистанция", "скелет", "линия", "позиция линии", "жирность",
     "сверху", "слева", "справа", "позиция", "голова", "шея", "грудь", "таз", "середина", "низ",
-    // Aim
+    // Aim (7)
     "аимбот", "фов", "кость", "плавность", "чек видимости", "круг фова", "точка у кости",
-    // Silent Aim
+    // Silent Aim (6)
     "сайлент аим", "фов", "чек видимости", "чек дыма", "млтр рекоила", "круг фова",
-    // Weapon
+    // Weapon (5)
     "бесконечные патроны", "кол-во патронов", "быстрая стрельба", "интервал стрельбы", "стрельба сквозь стены",
-    // Misc
+    // Misc (2)
     "эйр стрейф", "скорость эйр стрейфа",
-    // Configs
+    // Configs (6)
     "конфиги", "пусто", "загрузить", "сохранить", "новый", "удалить",
-    // Settings
+    // Settings (12)
     "акцент", "язык", "водяной знак", "иконки", "сайт", "тип", "фпс", "время",
     "версия", "цвет", "масштаб", "полоса прокрутки", "выход из чита",
-    // Credits
-    "люди из конфы разработчиков (разрабы короче00)",
+    // Credits (1)
+    "спасибо за функции и поддержку:",
 };
 
 inline const lang en = {
-    // ESP
+    // ESP (25)
     "enable esp", "rainbow", "box", "thickness", "shape", "square", "corners", "color",
     "nickname", "health", "distance", "skeleton", "line", "line pos", "thickness",
     "top", "left", "right", "position", "head", "neck", "chest", "hips", "middle", "bottom",
-    // Aim
+    // Aim (7)
     "aimbot", "aim fov", "bone", "smooth", "visible check", "fov circle", "dot in bone",
-    // Silent Aim
+    // Silent Aim (6)
     "silent aim", "fov", "visible check", "smoke check", "recoil mult", "fov circle",
-    // Weapon
+    // Weapon (5)
     "Infinity Ammo", "ammo value", "Fire Rate", "fire interval", "wallshot",
-    // Misc
+    // Misc (2)
     "air strafe", "air strafe speed",
-    // Configs
-    "configs", "empty", "load", "save", "delete", "config name", "save as",
-    // Settings
+    // Configs (6)
+    "configs", "empty", "load", "save", "new", "delete",
+    // Settings (12)
     "accent", "language", "watermark", "icons", "site", "type", "fps", "time",
     "version", "color", "scale", "scrollbar size", "exit cheat",
-    // Credits
-    "developers:",
+    // Credits (1)
+    "thanks for features and support:",
 };
 
 inline const lang* g_lang = &ru;
