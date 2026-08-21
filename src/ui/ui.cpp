@@ -176,6 +176,20 @@ static void aim_tab() {
         toggle(g_lang->aim_fov_draw, &opt_aim_fov_draw);
         toggle(g_lang->aim_info, &opt_aim_info);
     }
+
+    ImGui::Separator();
+    ImGui::Spacing();
+
+    // Silent Aim
+    toggle(g_lang->silent_aim, &opt_silent_aim);
+    if (opt_silent_aim) {
+        slider_f(g_lang->silent_fov, &s_silent_fov, 5, 90);
+        ImGui::PushID("silentbone"); c_widgets->combo(g_lang->bone, &s_silent_target_bone, bones, IM_ARRAYSIZE(bones)); ImGui::PopID();
+        toggle(g_lang->silent_visible, &opt_silent_visible);
+        toggle(g_lang->silent_smoke_check, &opt_silent_smoke_check);
+        slider_f(g_lang->silent_recoil_mult, &s_silent_recoil_mult, 0.05f, 10.f, "%.2f");
+        toggle(g_lang->silent_fov_draw, &opt_silent_fov_draw);
+    }
 }
 
 // Misc → Infinity Ammo, Fire Rate, Wallshot, Air Strafe

@@ -70,6 +70,13 @@ struct lang {
     const char* aim_fov_draw;
     const char* aim_360;
     const char* aim_info;
+    // Silent Aim
+    const char* silent_aim;
+    const char* silent_fov;
+    const char* silent_visible;
+    const char* silent_smoke_check;
+    const char* silent_recoil_mult;
+    const char* silent_fov_draw;
     const char* triggerbot;
     const char* trigger_vis;
     const char* trigger_radius;
@@ -155,6 +162,8 @@ inline const lang ru = {
     "soon...",
     // Aim
     "аимбот", "фов", "кость", "плавность", "чек видимости", "круг фова", "360", "точка у кости",
+    // Silent Aim
+    "сайлент аим", "фов", "чек видимости", "чек дыма", "млтр рекоила", "круг фова",
     "триггербот", "только видимые", "радиус (пкс)", "задержка (мс)", "голова", "шея", "грудь", "таз",
     // Weapon
     "патроны", "интервал",
@@ -190,6 +199,8 @@ inline const lang en = {
     "soon...",
     // Aim
     "aimbot", "aim fov", "bone", "smooth", "visible check", "fov circle", "360", "dot in bone",
+    // Silent Aim
+    "silent aim", "fov", "visible check", "smoke check", "recoil mult", "fov circle",
     "triggerbot", "visible only", "radius (px)", "delay (ms)", "head", "neck", "chest", "hips",
     // Weapon
     "ammo", "fire interval",

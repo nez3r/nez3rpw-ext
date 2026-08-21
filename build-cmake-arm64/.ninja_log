@@ -3,8 +3,8 @@
 24	7951	8090074304917280	CMakeFiles/nez3r.dir/src/ui/widgets.cpp.o	65e00b55fa7b5e07
 18	20589	8090139207497900	CMakeFiles/nez3r.dir/src/main.cpp.o	94c646159e91e06e
 25	39982	8090139207577921	CMakeFiles/nez3r.dir/src/func/aim.cpp.o	e3560d6d8c470668
-7	159	8090140395096238	build.ninja	445347ec53cb8c0d
-7	159	8090140395006276	C:/Users/nez3r/Desktop/0.39.2 bycmd/build-cmake-arm64/cmake_install.cmake	445347ec53cb8c0d
+7	159	8090146284705103	build.ninja	445347ec53cb8c0d
+7	159	8090146284625152	C:/Users/nez3r/Desktop/0.39.2 bycmd/build-cmake-arm64/cmake_install.cmake	445347ec53cb8c0d
 22	34506	8090139207537925	CMakeFiles/nez3r.dir/src/func/visuals.cpp.o	9fd68c5e2fbbb794
 22	27583	8090136778676836	CMakeFiles/nez3r.dir/src/ui/ui.cpp.o	756a0b4979611cdc
 34526	57364	8090139552828043	CMakeFiles/nez3r.dir/src/func/weapon_exploits.cpp.o	4c1158512ad76656
@@ -21,3 +21,5 @@
 51373	61855	8090074818403641	CMakeFiles/nez3r.dir/includes/draw/Android_draw/draw.cpp.o	969853fa7cb212ad
 57723	58168	8090139784544177	nez3r	6c44a87ea85ae345
 29	53469	8090139207627878	CMakeFiles/nez3r.dir/src/func/silent_aim.cpp.o	33d9eeed8992e594
+21	13646	8090146285584575	CMakeFiles/nez3r.dir/src/ui/ui.cpp.o	756a0b4979611cdc
+13647	13820	8090146421845174	nez3r	6c44a87ea85ae345
