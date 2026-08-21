@@ -1,7 +1,7 @@
 # ninja log v7
 30	30447	8090218616774189	CMakeFiles/nez3r.dir/src/ui/util.cpp.o	4c2df29f278b0a80
 27	30711	8090218616734213	CMakeFiles/nez3r.dir/src/ui/widgets.cpp.o	65e00b55fa7b5e07
-16	70808	8090218616624269	CMakeFiles/nez3r.dir/src/main.cpp.o	94c646159e91e06e
+29	19824	8090238196530523	CMakeFiles/nez3r.dir/src/main.cpp.o	94c646159e91e06e
 30475	132348	8090218921223475	CMakeFiles/nez3r.dir/src/func/visuals.cpp.o	9fd68c5e2fbbb794
 30712	137194	8090218923582021	CMakeFiles/nez3r.dir/src/func/aim.cpp.o	e3560d6d8c470668
 70812	164613	8090219324587271	CMakeFiles/nez3r.dir/src/func/silent_aim.cpp.o	33d9eeed8992e594
@@ -17,8 +17,7 @@
 66359	102904	8090221403801246	CMakeFiles/nez3r.dir/includes/draw/ImGui/imgui_widgets.cpp.o	34873583ffccf0d3
 93792	110643	8090221678122386	CMakeFiles/nez3r.dir/includes/draw/Android_touch/Touch.cpp.o	c6bf2f723f49ef93
 82491	112747	8090221565109205	CMakeFiles/nez3r.dir/includes/draw/Android_draw/draw.cpp.o	969853fa7cb212ad
-49	55855	8090224701073444	CMakeFiles/nez3r.dir/src/ui/ui.cpp.o	756a0b4979611cdc
-55860	57445	8090225259192149	nez3r	6c44a87ea85ae345
-29	19824	8090238196530523	CMakeFiles/nez3r.dir/src/main.cpp.o	94c646159e91e06e
 38	38562	8090238196620467	CMakeFiles/nez3r.dir/src/ui/ui.cpp.o	756a0b4979611cdc
 38568	38890	8090238581884481	nez3r	6c44a87ea85ae345
+28	49510	8090239865098595	CMakeFiles/nez3r.dir/src/ui/ui.cpp.o	756a0b4979611cdc
+49512	49856	8090240359944588	nez3r	6c44a87ea85ae345

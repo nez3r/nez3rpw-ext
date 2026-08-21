@@ -99,7 +99,7 @@ inline const lang ru = {
     "акцент", "язык", "водяной знак", "иконки", "сайт", "тип", "фпс", "время",
     "версия", "цвет", "масштаб", "полоса прокрутки", "выход из чита",
     // Credits
-    "спасибо за функции и поддержку:",
+    "люди из конфы разработчиков (разрабы короче00)",
 };
 
 inline const lang en = {
@@ -116,12 +116,12 @@ inline const lang en = {
     // Misc
     "air strafe", "air strafe speed",
     // Configs
-    "configs", "empty", "load", "save", "new", "delete",
+    "configs", "empty", "load", "save", "delete", "config name", "save as",
     // Settings
     "accent", "language", "watermark", "icons", "site", "type", "fps", "time",
     "version", "color", "scale", "scrollbar size", "exit cheat",
     // Credits
-    "thanks for features and support:",
+    "developers:",
 };
 
 inline const lang* g_lang = &ru;
