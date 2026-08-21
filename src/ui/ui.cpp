@@ -6,6 +6,7 @@
 #include "lang.hpp"
 #include "menu_vars.hpp"
 #include "watermark.hpp"
+#include "config.hpp"
 
 #include "bytes.hpp"
 #include "font_awesome.hpp"
@@ -97,11 +98,12 @@ void custom_interface_t::initialize_fonts() {
 
 	this->fonts.gondon = io.Fonts->AddFontFromMemoryTTF(font_awesome_binary, sizeof font_awesome_binary, 16 * c_scale->current_scale, &icons_config2, icon_ranges);
 
-	// только то, что реально работает в чите: Visuals / Aimbot / Misc / Settings / Credits
+	// только то, что реально работает в чите: Visuals / Aimbot / Misc / Configs / Settings / Credits
 	this->tabs = {
 		{("Visuals"),  nullptr, 0},
 		{("Aimbot"),   nullptr, 0},
 		{("Misc"),     nullptr, 0},
+		{("Configs"),  nullptr, 0},
 		{("Settings"), nullptr, 0},
 		{("Credits"),  nullptr, 0},
 	};
@@ -135,7 +137,7 @@ static void dim_text(const char* t) {
 // Visuals → ESP (всё, что рисуется в visuals.cpp: box/name/health/dist/skeleton/line/rgb)
 static void visuals_esp() {
     const char* shapes[] = { g_lang->square, g_lang->corners };
-    const char* hpos[] = { g_lang->left, g_lang->right, g_lang->top };
+    const char* line_pos[] = { g_lang->left, g_lang->right, g_lang->top };
     toggle(g_lang->enable_esp, &opt_esp);
     toggle(g_lang->rgb, &opt_rgb_esp);
     toggle(g_lang->box, &opt_box);
@@ -159,7 +161,6 @@ static void visuals_esp() {
     if (opt_line) {
         slider_f(g_lang->line_thick, &s_line_thick, 1, 10);
         ImGui::PushID("linecol"); color4(g_lang->color, &s_line_col); ImGui::PopID();
-        const char* line_pos[] = { g_lang->middle, g_lang->top, g_lang->bottom };
         c_widgets->combo(g_lang->position, &s_line_pos, line_pos, IM_ARRAYSIZE(line_pos));
     }
 }
@@ -238,6 +239,100 @@ static void settings_tab() {
     // Кнопка выхода из чита
     if (c_widgets->button(g_lang->exit_cheat)) {
         exit(0);
+    }
+}
+
+// Configs tab
+static void configs_tab() {
+    static char new_name[64] = "";
+    static int selected_idx = -1;
+
+    auto files = config::get_config_files();
+
+    ImGui::Text("%s", g_lang->cfg_list);
+    ImGui::Separator();
+
+    if (files.empty()) {
+        ImGui::TextColored(ImVec4(0.5f, 0.5f, 0.5f, 1.f), "%s", g_lang->cfg_empty);
+    } else {
+        ImGui::BeginChild("##config_list", ImVec2(0, 200), true);
+        for (int i = 0; i < (int)files.size(); i++) {
+            bool is_selected = (selected_idx == i);
+            if (ImGui::Selectable(files[i].c_str(), is_selected)) {
+                selected_idx = i;
+            }
+        }
+        ImGui::EndChild();
+    }
+
+    ImGui::Spacing();
+
+    // Buttons
+    ImGui::BeginGroup();
+
+    if (c_widgets->button(g_lang->cfg_load)) {
+        if (selected_idx >= 0 && selected_idx < (int)files.size()) {
+            if (config::load(files[selected_idx])) {
+                ImGui::Notification({ImGuiToastType_Success, 3000, "Config loaded"});
+            } else {
+                ImGui::Notification({ImGuiToastType_Error, 3000, "Failed to load config"});
+            }
+        } else {
+            ImGui::Notification({ImGuiToastType_Warning, 3000, "Select a config first"});
+        }
+    }
+
+    ImGui::SameLine();
+
+    if (c_widgets->button(g_lang->cfg_save)) {
+        int next_num = config::get_next_config_number();
+        if (config::save(next_num)) {
+            ImGui::Notification({ImGuiToastType_Success, 3000, "Config saved"});
+        } else {
+            ImGui::Notification({ImGuiToastType_Error, 3000, "Failed to save config"});
+        }
+    }
+
+    ImGui::SameLine();
+
+    if (c_widgets->button(g_lang->cfg_delete)) {
+        if (selected_idx >= 0 && selected_idx < (int)files.size()) {
+            if (config::delete_config(files[selected_idx])) {
+                ImGui::Notification({ImGuiToastType_Success, 3000, "Config deleted"});
+                selected_idx = -1;
+            } else {
+                ImGui::Notification({ImGuiToastType_Error, 3000, "Failed to delete config"});
+            }
+        } else {
+            ImGui::Notification({ImGuiToastType_Warning, 3000, "Select a config first"});
+        }
+    }
+
+    ImGui::EndGroup();
+
+    ImGui::Spacing();
+    ImGui::Separator();
+    ImGui::Spacing();
+
+    ImGui::Text("%s", g_lang->cfg_new_name);
+    ImGui::PushItemWidth(-1);
+    if (ImGui::InputText("##new_cfg_name", new_name, sizeof(new_name))) {
+        // Input changed
+    }
+    ImGui::PopItemWidth();
+
+    if (c_widgets->button(g_lang->cfg_save_as)) {
+        if (strlen(new_name) > 0) {
+            std::string fname = std::string(config::CONFIG_PREFIX) + new_name + config::CONFIG_EXT;
+            if (config::save(fname)) {
+                ImGui::Notification({ImGuiToastType_Success, 3000, "Config saved as custom name"});
+                new_name[0] = '\0';
+            } else {
+                ImGui::Notification({ImGuiToastType_Error, 3000, "Failed to save config"});
+            }
+        } else {
+            ImGui::Notification({ImGuiToastType_Warning, 3000, "Enter config name"});
+        }
     }
 }
 
@@ -383,8 +478,9 @@ void custom_interface_t::render(void *_vars) {
 						break;
 					case 1: menu_tabs::aim_tab(); break;
 					case 2: menu_tabs::misc_tab(); break;
-					case 3: menu_tabs::settings_tab(); break;
-					case 4: menu_tabs::credits_tab(); break;
+					case 3: menu_tabs::configs_tab(); break;
+					case 4: menu_tabs::settings_tab(); break;
+					case 5: menu_tabs::credits_tab(); break;
 				}
 				Spacing();
 				EndChild();
