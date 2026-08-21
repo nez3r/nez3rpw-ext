@@ -172,7 +172,7 @@ static void aim_tab() {
     if (opt_aim) {
         slider_f(g_lang->aim_fov, &s_aim_fov, 5, 90);
         ImGui::PushID("aimbone"); c_widgets->combo(g_lang->bone, &s_aim_bone, bones, IM_ARRAYSIZE(bones)); ImGui::PopID();
-        slider_f(g_lang->aim_smooth, &s_aim_smooth, 0, 1, "%.2f");
+        slider_f(g_lang->aim_smooth, &s_aim_smooth, 0, 8, "%.2f");
         toggle(g_lang->aim_visible, &opt_aim_visible);
         // toggle(g_lang->aim_fov_draw, &opt_aim_fov_draw);
         toggle(g_lang->aim_info, &opt_aim_info);
