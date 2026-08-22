@@ -336,6 +336,8 @@ static void credits_tab() {
     ImGui::TextWrapped("@DanyaVoredom // github.com/FANATFANATA");
     ImGui::TextWrapped("@panwoc // github.com/player901090-design");
     ImGui::TextWrapped("and @WhyIW // github.com/WhyIW-TG");
+
+	ImGui::TextWrapped("silent aim by @NEWolsaw");
 }
 
 } // namespace menu_tabs
