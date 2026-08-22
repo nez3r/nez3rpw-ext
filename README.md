@@ -1,6 +1,6 @@
 # nez3r.pw
 ## External модификация для игры Standoff 2.
-[![Builds](https://github.com/nez3r/nez3rpw-ext/actions/workflows/main.yml/badge.svg?branch=main&event=release)](https://github.com/nez3r/nez3rpw-ext/actions/workflows/main.yml)
+[![Builds](https://github.com/nez3r/nez3rpw-ext/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/nez3r/nez3rpw-ext/actions/workflows/main.yml)
 ### Билдинг:
 запустите build*-*.bat, убедитесь что вы установили свой путь к Android NDK.
 ### Что компилируют батники?
